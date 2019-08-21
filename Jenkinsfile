@@ -1,19 +1,15 @@
 pipeline {
   agent {
     docker {
-      image 'golang'
+      image 'node:6-alpine'
+      args '-p 3000:3000'
     }
 
   }
   stages {
-    stage('Check') {
-      steps {
-        sh 'go get -v -t -d ./...'
-      }
-    }
     stage('Build') {
       steps {
-        sh 'go build -v .'
+        sh 'npm install'
       }
     }
   }
